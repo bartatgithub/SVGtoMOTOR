@@ -5,7 +5,7 @@
 * @author Kurt Bruns
 * @tags [svg]
 */
-import { Interactive, getScriptName } from '../../index.js';
+import { Interactive, getScriptName } from "https://vectorjs.org/index.js";
 let interactive = new Interactive(getScriptName());
 let margin = 0;
 interactive.width = 692;
