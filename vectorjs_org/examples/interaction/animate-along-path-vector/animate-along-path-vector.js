@@ -14,7 +14,7 @@ let control = interactive.control(0, 0);
 let scrubber = interactive.scrubber(100, 175, {});
 let path = interactive.path(pathString);
 path.style.fill = 'none';
-path.style.stroke = '#333333';
+path.style.stroke = '#990000';
 var pathLength = path.root.getTotalLength();
 function moveControl() {
     let currentPosition = scrubber.value / (scrubber.max - scrubber.min);
@@ -23,3 +23,13 @@ function moveControl() {
 }
 requestAnimationFrame(moveControl);
 //# sourceMappingURL=animate-along-path-vector.js.map
+
+let text = interactive.text(100, 100, "(100,100)");
+text.addDependency(control);
+text.update = function () {
+    this.x = control.x + 15;
+    this.y = control.y + 15;
+    this.contents = `( ${control.x}, ${control.y})`;
+};
+text.update();
+//# sourceMappingURL=svg-coordinate-system.js.map
