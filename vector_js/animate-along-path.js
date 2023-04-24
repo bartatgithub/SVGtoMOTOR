@@ -3,7 +3,7 @@
 * @description This interactive demonstrates how a element can be animated along a path.
 * @tags [animation]
 */
-import { Interactive, getScriptName } from '../../index.js';
+import { Interactive, getScriptName } from 'index.js';
 let interactive = new Interactive(getScriptName());
 interactive.width = 768;
 interactive.height = 225;
