@@ -32,7 +32,7 @@ text.update = function () {
     //// this.y = control.y + 15;
     this.contents = `( ${control.x}, ${control.y})`;
     
-    console.log("x = " + control.x + " y = " + control.y +);
+    console.log("x = " + control.x + " y = " + control.y);
 };
 text.update();
 //# sourceMappingURL=svg-coordinate-system.js.map
