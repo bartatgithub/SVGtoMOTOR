@@ -14,7 +14,7 @@ let control = interactive.control(0, 0);
 let scrubber = interactive.scrubber(100, 175, {});
 let path = interactive.path(pathString);
 path.style.fill = 'none';
-path.style.stroke = '#333333';
+path.style.stroke = '#880000';
 var pathLength = path.root.getTotalLength();
 function moveControl() {
     let currentPosition = scrubber.value / (scrubber.max - scrubber.min);
