@@ -3,7 +3,7 @@
 * @description This interactive demonstrates how a element can be animated along a path.
 * @tags [animation]
 */
-import { Interactive, getScriptName } from 'index.js';
+import { Interactive, getScriptName } from './index.js';
 let interactive = new Interactive(getScriptName());
 interactive.width = 768;
 interactive.height = 225;
@@ -23,3 +23,13 @@ function moveControl() {
 }
 requestAnimationFrame(moveControl);
 //# sourceMappingURL=animate-along-path-vector.js.map
+
+let text = interactive.text(100, 100, "(100,100)");
+text.addDependency(control);
+text.update = function () {
+    this.x = control.x + 15;
+    this.y = control.y + 15;
+    this.contents = `( ${control.x}, ${control.y})`;
+};
+text.update();
+//# sourceMappingURL=svg-coordinate-system.js.map
