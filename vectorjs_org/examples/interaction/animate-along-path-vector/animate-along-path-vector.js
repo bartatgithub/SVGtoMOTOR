@@ -21,18 +21,19 @@ function moveControl() {
     let currentPosition = scrubber.value / (scrubber.max - scrubber.min);
     control.translate(path.root.getPointAtLength(currentPosition * pathLength).x, path.root.getPointAtLength(currentPosition * pathLength).y);
     requestAnimationFrame(moveControl);
-}
-requestAnimationFrame(moveControl);
-//# sourceMappingURL=animate-along-path-vector.js.map
-
-let text = interactive.text(100, 100, "(100,100)");
-//// text.addDependency(control);
-text.update = function () {
-    //// this.x = control.x + 15;
-    //// this.y = control.y + 15;
-    this.contents = `( ${control.x}, ${control.y})`;
+    
+    let text = interactive.text(100, 100, "(100,100)");
+    //// text.addDependency(control);
+    text.update = function () {
+        //// this.x = control.x + 15;
+        //// this.y = control.y + 15;
+        this.contents = (${control.x}, ${control.y});
     
     console.log("x = " + control.x + " y = " + control.y);
 };
 text.update();
 //# sourceMappingURL=svg-coordinate-system.js.map
+
+}
+requestAnimationFrame(moveControl);
+//# sourceMappingURL=animate-along-path-vector.js.map
