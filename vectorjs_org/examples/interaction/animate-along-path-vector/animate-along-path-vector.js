@@ -46,17 +46,18 @@ requestAnimationFrame(moveControl);
         this.y2 = control.y;
 
         //// Left Motorbelt lenght
-        var lineLLength = lineL.getTotalLength();
-        console.log("LineLeftLength = " + lineLLength);
+        var lineLlength = lineL.getTotalLength();
+        console.log("LineLeftLength = " + lineLlength);
 
-    var lineLLengthLable = document.createElementNS(lineLLength, "rectangle"); //to create a circle. for rectangle use "rectangle"
-    lineLLengthLable.setAttributeNS(null,"id","lineLLengthLable");
-    lineLLengthLable.setAttributeNS(null,"x",100);
-    lineLLengthLable.setAttributeNS(null,"y",100);
-    lineLLengthLable.setAttributeNS(null,"fill","black");
-    lineLLengthLable.setAttributeNS(null,"stroke","none");
+        //// TEST line L lenght Label
+    var lineLlengthLable = document.createElementNS(lineLlength, "rectangle"); //to create a circle. for rectangle use "rectangle"
+    lineLlengthLable.setAttributeNS(null,"id","lineLLengthLable");
+    lineLlengthLable.setAttributeNS(null,"x",100);
+    lineLlengthLable.setAttributeNS(null,"y",100);
+    lineLlengthLable.setAttributeNS(null,"fill","black");
+    lineLlengthLable.setAttributeNS(null,"stroke","none");
 
-    document.getElementById("interactive-0").appendChild(lineLLengthLable);
+    document.getElementById("interactive-0").appendChild(lineLlengthLable);
 }
         
     };
