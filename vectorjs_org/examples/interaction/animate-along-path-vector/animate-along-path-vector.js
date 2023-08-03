@@ -47,7 +47,7 @@ requestAnimationFrame(moveControl);
 
         //// Left Motorbelt lenght
         var lineLlength = lineL.getTotalLength();
-        console.log("LineLeftLength = " + lineLlength);
+        //// console.log("LineLeftLength = " + lineLlength);
 
         //// TEST line L lenght Label
     var lineLlengthLable = document.createElementNS(lineLlength, "rectangle"); //to create a circle. for rectangle use "rectangle"
@@ -76,7 +76,7 @@ requestAnimationFrame(moveControl);
 
         //// Right Motorbelt lenght
         let lineRLength = lineR.getTotalLength();
-        console.log("LineRightLength = " + lineRLength);
+        //// console.log("LineRightLength = " + lineRLength);
 
     };
     lineR.update();
