@@ -100,7 +100,8 @@ export default class Scrubber extends Slider {
                 this.done = false;
                 // TODO: change this.done to true when the control is "scrubbed" to the end
             }
-            let stepSize = .0025 * scrubber.range;
+            //// let stepSize = .0025 * scrubber.range;
+            let stepSize = .025 * scrubber.range;
             let step = function (timestamp) {
                 scrubber.value = (scrubber.value + stepSize);
                 if (scrubber.value > scrubber.max && !scrubber.loop) {
