@@ -49,6 +49,16 @@ requestAnimationFrame(moveControl);
         var lineLLength = lineL.getTotalLength();
         console.log("LineLeftLength = " + lineLLength);
 
+    var lineLLengthLable = document.createElementNS(lineLLength, "rectangle"); //to create a circle. for rectangle use "rectangle"
+    lineLLengthLable.setAttributeNS(null,"id","lineLLengthLable");
+    lineLLengthLable.setAttributeNS(null,"x",100);
+    lineLLengthLable.setAttributeNS(null,"y",100);
+    lineLLengthLable.setAttributeNS(null,"fill","black");
+    lineLLengthLable.setAttributeNS(null,"stroke","none");
+
+    document.getElementById("interactive-0").appendChild(lineLLengthLable);
+}
+        
     };
     lineL.update();
 
