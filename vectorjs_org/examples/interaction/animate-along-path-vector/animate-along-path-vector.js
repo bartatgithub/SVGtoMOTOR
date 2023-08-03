@@ -58,7 +58,6 @@ requestAnimationFrame(moveControl);
     lineLlengthLable.setAttributeNS(null,"stroke","none");
 
     document.getElementById("interactive-0").appendChild(lineLlengthLable);
-}
         
     };
     lineL.update();
