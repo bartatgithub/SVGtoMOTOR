@@ -6,7 +6,7 @@
 import { Interactive, getScriptName } from '../index.js';
 let interactive = new Interactive(getScriptName());
 interactive.width = 620;
-interactive.height = 640;
+interactive.height = 400;
 interactive.border = true;
 
 // Hard coded  in the string for the path. Obviously, fix this later.
