@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head>
-  <meta charset="utf-8">
-  <title>SVGtoMOTOR/vectorjs_org</title>
+    <head>
+   <meta charset="utf-8">
+  <title>SVGtoMOTOR/vectorjs_org + Stepper Motor Control</title>
   <meta name="description" content="This interactive demonstrates how a element can be animated along a path." />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="shortcut icon" type="image/x-icon' href='/favicon.png"/>
@@ -10,24 +10,159 @@
   
   <link rel="stylesheet" media="screen" href="../scss/main.css">
   <link rel="stylesheet" type="text/css" href="../library.css">
-</head>
-<body>
-
-<header class="text-center">
-	<div class="small-container">
-    <a href="https://vectorjs.org/examples/"><h1>Vector.js</h1></a>
-		<p>Vector is an open source javascript library for creating interactive graphics.</p>
-		<p>View the <a href="https://github.com/vector-js/vector.git" target="_blank" rel="noreferrer">repository</a></p>
-	</div>
-</header>
-<main class="medium-container">
   
-  <h1>SVGtoMOTOR</h1>
-  
+       <style>
+        body {
+          font-family: Arial, sans-serif;
+          background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+          color: #333;
+          text-align: center;
+          margin: 0;
+          padding: 0;
+        }
+        .container {
+          margin: 20px auto;
+          padding: 20px;
+          border-radius: 8px;
+          background-color: #fff;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          width: 90%;
+        }
+        .button {
+          padding: 10px 20px;
+          margin: 5px;
+          border: none;
+          border-radius: 5px;
+          background-color: #007bff;
+          color: white;
+          font-size: 16px;
+          cursor: pointer;
+          transition: background-color 0.3s, transform 0.3s;
+        }
+        .button:hover {
+          background-color: #0056b3;
+        }
+        .button:active {
+          transform: scale(0.95);
+        }
+        .slider {
+          width: 90%;
+          margin: 20px 0;
+        }
+        .slider + span {
+          display: inline-block;
+          margin: 10px;
+          font-size: 18px;
+        }
+        h2 {
+          color: #007bff;
+        }
+        .subscribe {
+          padding: 10px 20px;
+          margin: 20px;
+          border: none;
+          border-radius: 5px;
+          background-color: #fc3c3c;
+          color: white;
+          font-size: 16px;
+          cursor: pointer;
+          transition: background-color 0.3s, transform 0.3s;
+        }
+        .subscribe:hover {
+          background-color: #df1ed5;
+        }
+        .subscribe:active {
+          transform: scale(0.95);
+        }
+        @media (max-width: 600px) {
+          .container {
+            width: 90%;
+          }
+          .button, .subscribe {
+            width: 90%;
+            padding: 15px;
+          }
+          .slider {
+            width: 90%;
+          }
+        }
+      </style>
+    </head>
+    <body>
+    
+    <main class="medium-container">
+  <h2>SVGtoMOTOR</h2>
 <div id="animate-along-path-vector" class="vertical-center i-container"></div>
 <script type="module" src="animate-along-path-vector.js"></script>
-
 </main>
 
-</body>
-</html>
+      <div class="container">
+        <h2>Stepper Motor 1 Control</h2>
+        <h3>Automatic</h3>
+        <button class="button" onclick="controlMotor(1, 'cw')">Clockwise</button>
+        <button class="button" onclick="controlMotor(1, 'ccw')">Anticlockwise</button>
+        <button class="button" onclick="controlMotor(1, 'stop')">Stop</button>
+        <br><br>
+        <input type="range" min="0" max="360" value="0" class="slider" id="angleSlider1" oninput="updateAngleValue(1)">
+        <br><br>
+        <span id="angleValue1">0</span> degrees
+        <button class="button" onclick="rotateMotor(1)">Rotate</button>
+        <br><br>
+        <h3>Manually</h3>
+        <input type="range" min="0" max="360" value="0" class="slider" id="directSlider1" oninput="directControl(1)">
+        
+      </div>
+      <br><br>
+      <div class="container">
+        <h2>Stepper Motor 2 Control</h2>
+        <h3>Automatic</h3>
+        <button class="button" onclick="controlMotor(2, 'cw')">Clockwise</button>
+        <button class="button" onclick="controlMotor(2, 'ccw')">Anticlockwise</button>
+        <button class="button" onclick="controlMotor(2, 'stop')">Stop</button>
+        <br><br>
+        <input type="range" min="0" max="360" value="0" class="slider" id="angleSlider2" oninput="updateAngleValue(2)">
+                <br><br>
+        <span id="angleValue2">0</span> degrees
+        <button class="button" onclick="rotateMotor(2)">Rotate</button>
+        <br><br>
+        <h3>Manually</h3>
+        <input type="range" min="0" max="360" value="0" class="slider" id="directSlider2" oninput="directControl(2)">
+        
+      </div>
+      <br><br>
+      <!--
+      <button class="subscribe" onclick="window.open('https://www.youtube.com/channel/UCdGUOMS_ufSE8xVxVRf8SGg)">Subscribe</button>
+      -->
+      <script>
+        function controlMotor(motor, action) {
+          var xhr = new XMLHttpRequest();
+          xhr.open("GET", "/control?motor=" + motor + "&action=" + action, true);
+          xhr.send();
+        }
+        
+        function rotateMotor(motor) {
+          var angle = document.getElementById("angleSlider" + motor).value;
+          var xhr = new XMLHttpRequest();
+          xhr.open("GET", "/rotate?motor=" + motor + "&angle=" + angle, true);
+          xhr.send();
+        }
+        
+        function directControl(motor) {
+          var angle = document.getElementById("directSlider" + motor).value;
+          var xhr = new XMLHttpRequest();
+          xhr.open("GET", "/direct?motor=" + motor + "&angle=" + angle, true);
+          xhr.send();
+        }
+        
+        function updateAngleValue(motor) {
+          var angle = document.getElementById("angleSlider" + motor).value;
+          document.getElementById("angleValue" + motor).innerText = angle;
+        }
+        
+        function updateDirectValue(motor) {
+          var angle = document.getElementById("directSlider" + motor).value;
+          document.getElementById("directValue" + motor).innerText = angle;
+        }
+      </script>
+    </body>
+    </html>
